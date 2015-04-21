@@ -70,8 +70,11 @@ function master() {
 		showSpinner(video);
 
 		webRtcPeer = kurentoUtils.WebRtcPeer.startSendOnly(video, function(offerSdp) {
+			var roomName = document.getElementById("roomName").value;
+			alert(roomName);
 			var message = {
 				id : 'master',
+				room: roomName,
 				sdpOffer : offerSdp
 			};
 			sendMessage(message);
@@ -84,8 +87,10 @@ function viewer() {
 		showSpinner(video);
 
 		webRtcPeer = kurentoUtils.WebRtcPeer.startRecvOnly(video, function(offerSdp) {
+			var roomName = document.getElementById("roomName").value;
 			var message = {
 				id : 'viewer',
+				room: roomName,
 				sdpOffer : offerSdp
 			};
 			sendMessage(message);
